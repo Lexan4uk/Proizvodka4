@@ -1,0 +1,122 @@
+@import 'mixins';
+@import 'variables';
+
+* {
+  color: var(--white);
+}
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  max-width: 360px;
+  min-height: 100vh;
+}
+
+.block-normalizer {
+  width: 100%;
+  display: flex;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: 0 auto;
+}
+
+.title-b {
+  font-family: 'Bender';
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 32px;
+}
+
+.title-m {
+  font-family: 'Bender';
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 38px;
+}
+
+.title-s {
+  font-family: 'Bender';
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 34px;
+}
+
+.text-l {
+  font-family: 'Brutal Type';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.text-m {
+  font-family: 'Brutal Type';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.text-menu {
+  font-family: 'Brutal Type';
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.hlink {
+  font-family: 'Brutal Type';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.button-text {
+  font-family: 'Bender';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.button {
+  @extend .button-text;
+  border: none;
+  width: 100%;
+  background: var(--yellow);
+  color: var(--black);
+}
+
+.button-l {
+  @extend .button;
+  padding-top: 10px;
+  padding-bottom: 11px;
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+
+  /* Обрезка углов */
+  &_uncative {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+}
+
+
+.button-s {
+  @extend .button;
+  padding-top: 4px;
+  padding-bottom: 5px;
+
+  &_slice-left {
+    background: linear-gradient(350grad, transparent 10px, var(--yellow) 0) ;
+  }
+  &_slice-right {
+    background: linear-gradient(50grad, transparent 10px, var(--yellow) 0) ;
+  }
+}
+
+.f-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.f-row {
+  display: flex;
+}
