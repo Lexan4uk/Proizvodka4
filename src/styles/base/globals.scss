@@ -3,9 +3,13 @@
 
 * {
   color: var(--white);
+  font-family: "Bender";
 }
 
-
+#root {
+  background: var(--black);
+  position: relative;
+}
 body {
   display: flex;
   flex-direction: column;
@@ -69,6 +73,11 @@ body {
   font-size: 14px;
   line-height: 20px;
 }
+.simple-button {
+  background: none;
+  padding: 0;
+  border: none;
+}
 
 .button-text {
   font-family: 'Bender';
@@ -80,7 +89,7 @@ body {
 .button {
   @extend .button-text;
   border: none;
-  width: 100%;
+  height: fit-content;
   background: var(--yellow);
   color: var(--black);
 }
@@ -101,8 +110,7 @@ body {
 
 .button-s {
   @extend .button;
-  padding-top: 4px;
-  padding-bottom: 5px;
+  padding: 5px 12px;
 
   &_slice-left {
     background: linear-gradient(350grad, transparent 10px, var(--yellow) 0) ;
@@ -119,4 +127,7 @@ body {
 
 .f-row {
   display: flex;
+}
+.gap-16 {
+  gap: 16px;
 }

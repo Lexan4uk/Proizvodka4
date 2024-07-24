@@ -1,0 +1,29 @@
+.header {
+    &__holder {
+        justify-content: space-between;
+    }
+
+    &__cities-holder {
+        gap: 4px;
+    }
+
+    &__cities-dropdown {
+        background: var(--black);
+        border: none;
+        outline: none;
+        padding: 5px;
+        
+    }
+
+    &__cities-dropdown-option {
+        background: var(--black);
+        :hover {
+            background: var(--dark-gray);
+        }
+    }
+    
+
+    &__actions-holder {
+        align-items: center;
+    }
+}
