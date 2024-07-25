@@ -1,5 +1,8 @@
 .footer {
     &_props {
+        z-index: 5;
+        background: inherit;
+        border-top: 1px solid #3E3E3E;
         position: fixed;
         left: 0;
         bottom: 0;
@@ -7,8 +10,12 @@
         width: 100%;
     }
 
-    &__holder {
+    &__nav {
         padding: 12px 8px 16px 8px;
+    }
+
+    &__holder {
+
         justify-content: space-between;
     }
 
@@ -20,6 +27,7 @@
 
         &_active {
             --iconcolor: var(--yellow) !important;
+
             .text-menu {
                 color: var(--yellow);
             }

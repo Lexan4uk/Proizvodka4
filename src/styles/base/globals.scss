@@ -48,7 +48,7 @@ body {
 
 .text-l {
   font-family: 'Brutal Type';
-  font-weight: 400;
+  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
 }
@@ -67,11 +67,17 @@ body {
   line-height: 16px;
 }
 
-.hlink {
+.hlink-s {
   font-family: 'Brutal Type';
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
+}
+.hlink-l {
+  font-family: 'Brutal Type';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
 }
 .simple-button {
   background: none;
@@ -105,6 +111,9 @@ body {
     opacity: 0.7;
     pointer-events: none;
   }
+}
+.text-yellow {
+  color: var(--yellow)
 }
 
 
