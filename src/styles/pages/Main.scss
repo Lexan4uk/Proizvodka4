@@ -25,10 +25,19 @@
 
   &__goods-nav-holder {
     margin-top: 40px;
+    margin-bottom: 24px;
     padding-left: 16px;
     overflow: hidden;
     .swiper-slide {
       width: fit-content !important;
     }
+  }
+  &__section {
+    gap: 24px;
+    margin-bottom: 40px !important;
+  }
+  &__section-top {
+    justify-content: space-between;
+    align-items: center;
   }
 }

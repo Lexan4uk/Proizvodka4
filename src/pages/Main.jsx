@@ -75,7 +75,7 @@ function Main() {
           </ul>
         </nav>
         {sortedGoods?.map((item) => (
-          <MainCard data={item} />
+          <MainCard data={item} key={item.name}/>
         ))}
 
       </main>
