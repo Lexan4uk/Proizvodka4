@@ -14,25 +14,25 @@ function ProductCard({ data }) {
     const tagProcessing = (tag) => {
         switch (tag) {
             case "Premium":
-                return premium(undefined, undefined, "menu-card__tag")
+                return premium()
             case "Жареный":
-                return fried(undefined, undefined, "menu-card__tag")
+                return fried()
             case "Запеченный":
-                return baked(undefined, undefined, "menu-card__tag")
+                return baked()
             default:
                 break
         }
     }
     return (
-        <a href={`http://localhost:3000/product/${data.id}`} className="menu-card menu-card_props f-column">
+        <a href={data.href} className="menu-card menu-card_props f-column">
             {productcard_border(undefined, undefined, undefined, "menu-card__border")}
             {productcard_border_circle(undefined, undefined, undefined, "menu-card__border-circle")}
             <div className="menu-card__content-holder">
                 <div className="menu-card__img-holder">
                     <img className="menu-card__img" src={data.image_links[0]} alt="Product image" />
                     {data.tags.length !== 0 && (
-                        data?.tags?.map((tag) => {
-                            return tagProcessing(tag)
+                        data?.tags?.map((tag, index) => {
+                            <div className="menu-card__tag" key={index}>{tagProcessing(tag)}</div>
                         })
                     )
                     }
@@ -43,7 +43,7 @@ function ProductCard({ data }) {
                 </div>
             </div>
             <div className="menu-card__buttons-holder f-row">
-                <a href="/" className="menu-card__button-choose menu-card__button-choose_left f-row gap-4 button-s button-s_slice-left">{cart("var(--white)")}Выбрать <span className="menu-card__button-choose_text-right">От {data.min_price} ₽</span></a>
+                <button href="/" className="menu-card__button-choose menu-card__button-choose_left f-row gap-4 button-s button-s_slice-left">{cart("var(--white)")}Выбрать <span className="menu-card__button-choose_text-right">От {data.min_price} Р</span></button>
             </div>
 
         </a>

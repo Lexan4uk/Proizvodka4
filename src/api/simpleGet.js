@@ -2,7 +2,8 @@ import { api } from "@api/api";
 
 export const apiTags = {
     menu_categories: "menu_categories",
-    menu: "products/menu"
+    menu: "products/menu",
+    promotions: "promotion"
 };
 
 export async function simpleGet(params) {
