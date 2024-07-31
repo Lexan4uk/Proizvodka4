@@ -87,7 +87,7 @@ const getSvg = () => {
             </svg>
         )
     }
-    const productcard_border_circle = (stroke = "var(--iconcolor)", height = 10, width = 10, customclass = "") => {
+    const circle = (stroke = "var(--iconcolor)", height = 10, width = 10, customclass = "") => {
         return (
             <svg className={`custom-svg ${customclass}`} width={width} height={height} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0.76709" y="0.5" width="8.73294" height="9" rx="4.36647" stroke={stroke} />
@@ -151,6 +151,13 @@ const getSvg = () => {
             </svg>
         )
     }
+    const promocard_border = (stroke = "var(--iconcolor)", height = 254, width = 158, customclass = "") => {
+        return (
+            <svg className={`custom-svg ${customclass}`} width={width} height={height} viewBox="0 0 158 254" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M157 157V1H17.3949L1 16.4703V253H149" stroke={stroke} />
+            </svg>
+        )
+    }
 
     return {
         pizza,
@@ -162,10 +169,11 @@ const getSvg = () => {
         cart,
         arrow_line,
         productcard_border,
-        productcard_border_circle,
+        circle,
         premium,
         baked,
         fried,
+        promocard_border
     }
 }
 export default getSvg

@@ -1,9 +1,9 @@
 import '@styles/pages/Main.scss';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
-import MainCard from '@components/goods_cards/MainCard'
+import MainCard from '@components/cards/MainCard'
 import useSWR from 'swr';
-import productNormalizer from '@scripts/helpers/productNormalizer';
+import objectNormalizer from '@scripts/helpers/objectNormalizer';
 import { simpleGet, apiTags } from "@api/simpleGet"
 import { useState, useEffect, useRef } from 'react';
 import Swiper from 'swiper';
@@ -18,9 +18,12 @@ function Main() {
   const { data: options, error: opError, isLoading: opIsLoading } = useSWR(apiTags.menu_categories, simpleGet);
   const { data: goods, error: gError, isLoading: gIsLoading } = useSWR(apiTags.menu, simpleGet);
   const { data: promotions, error: pError, isLoading: pIsLoading } = useSWR(apiTags.promotions, simpleGet);
-
+  const normalizedPromos = promotions?.items?.map((item) => {
+    return objectNormalizer(item, "actions")
+  })
+  
   const sortedGoods = goods?.items?.reduce((acc, item) => {
-    productNormalizer(item)
+    objectNormalizer(item, "product")
     const parentGroupId = item.parent_group.id;
     const groupName = item.parent_group.name;
     const groupColor = item.parent_group.color || 'defaultColor';
@@ -37,7 +40,7 @@ function Main() {
     group.items.push(item);
     return acc;
   }, []);
-  console.log(promotions)
+
   const [activeDelivery, setActiveDelivery] = useState('Самовывоз');
   const [isFixed, setIsFixed] = useState(false);
   const navRef = useRef(null);
@@ -97,8 +100,8 @@ function Main() {
         <aside className={`main-catalog__promotion-holder ${isFixed ? 'main-catalog__promotion-holder_margin-bottom' : ''}`}>
           <div className="main-catalog__promotion promotion-swiper">
             <div className="swiper-wrapper">
-              {promotions?.items?.map((item) => (
-                <a href="/" key={item.id} className="main-catalog__promotion-slide swiper-slide">
+              {normalizedPromos?.map((item) => (
+                <a href={item.href} key={item.id} className="main-catalog__promotion-slide swiper-slide">
                   <img className="main-catalog__promotion-slide-img" src={`https://nf.kvokka.net${item.cover}`} alt="" />
                 </a>
               ))}

@@ -5,7 +5,7 @@ import getSvg from '@images/svg'
 function ProductCard({ data }) {
     const {
         productcard_border,
-        productcard_border_circle,
+        circle,
         cart,
         premium,
         baked,
@@ -26,7 +26,7 @@ function ProductCard({ data }) {
     return (
         <a href={data.href} className="menu-card menu-card_props f-column">
             {productcard_border(undefined, undefined, undefined, "menu-card__border")}
-            {productcard_border_circle(undefined, undefined, undefined, "menu-card__border-circle")}
+            {circle(undefined, undefined, undefined, "menu-card__border-circle")}
             <div className="menu-card__content-holder">
                 <div className="menu-card__img-holder">
                     <img className="menu-card__img" src={data.image_links[0]} alt="Product image" />

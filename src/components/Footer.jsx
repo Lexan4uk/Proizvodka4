@@ -17,7 +17,7 @@ function Footer({ active }) {
                 <ul className="footer__holder f-row">
                     {option({ href: "/", icon: pizza(), text: "Меню", active: active === 1 })}
                     {option({ href: "/", icon: person(), text: "Профиль", active: active === 2 })}
-                    {option({ href: "/", icon: ticket(), text: "Акции", active: active === 3 })}
+                    {option({ href: "/actions", icon: ticket(), text: "Акции", active: active === 3 })}
                     {option({ href: "/", icon: pin(), text: "Контакты", active: active === 4 })}
                     {option({ href: "/", icon: cart(), text: "Корзина", active: active === 5 })}
                 </ul>

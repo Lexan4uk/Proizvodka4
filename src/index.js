@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Main from '@pages/Main';
+import Actions from '@pages/Actions';
+import Action from '@pages/Action';
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 
 import reportWebVitals from './reportWebVitals';
 import '@fonts/fonts.scss'
@@ -9,12 +14,42 @@ import '@globalStyles/mixins.scss';
 import '@globalStyles/normalize.scss';
 import '@globalStyles/variables.scss';
 
+const App = (props) => {
+  /*const [isUserFetching, setIsUserFetching] = useRecoilState(isUserFetchingState);
+
+  const {
+    initUser,
+    isAuthorised
+  } = useAuth();
+
+  useEffect(() => {
+    if (!isUserFetching && !isAuthorised) {
+      setIsUserFetching(true)
+      initUser()
+      setIsUserFetching(false)
+    }
+  }, [isAuthorised, isUserFetching])*/
+
+
+
+  return props.children
+}
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Main />
+    <RecoilRoot>
+      <App>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Main/>} />
+            <Route path="/actions" element={<Actions/>} />
+            <Route path="/actions/:id" element={<Action />} />
+          </Routes>
+        </Router>
+      </App>
+    </RecoilRoot>
   </React.StrictMode>
 );
 

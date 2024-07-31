@@ -1,7 +1,6 @@
 import '@styles/pages/Main.scss';
-import { useState, useEffect } from 'react';
 import getSvg from '@images/svg'
-import ProductCard from '@components/goods_cards/ProductCard';
+import ProductCard from '@components/cards/ProductCard';
 
 function MainCard({ data }) {
     const {
