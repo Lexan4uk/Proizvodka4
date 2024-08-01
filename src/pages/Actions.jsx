@@ -18,7 +18,7 @@ function Actions() {
         <>
         <main className="actions-page actions-page_props block-normalizer f-column">
             <div className="actions-page__holder f-column">
-                <h1 className="actions-page__title title-b">Акции</h1>
+                <h1 className="actions-page__title title-l">Акции</h1>
             </div>
             <section className="actions-page__actions-holder">
             {normalizedPromos?.map((promo) => (

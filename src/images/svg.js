@@ -158,6 +158,12 @@ const getSvg = () => {
             </svg>
         )
     }
+    const arrow = (fill = "var(--iconcolor)", height = 24, width = 24, customclass = "") => {
+        return (
+            <svg className={`custom-svg ${customclass}`} width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill={fill} fillRule="evenodd" clipRule="evenodd" d="M8.65685 19.0709L2.29289 12.7069C1.90237 12.3164 1.90237 11.6832 2.29289 11.2927L8.65686 4.92874C9.04738 4.53821 9.68055 4.53821 10.0711 4.92874C10.4616 5.31926 10.4616 5.95243 10.0711 6.34295L5.41421 10.9998L22 10.9998L22 12.9998L5.41421 12.9998L10.0711 17.6567C10.4616 18.0472 10.4616 18.6803 10.0711 19.0709C9.68054 19.4614 9.04738 19.4614 8.65685 19.0709Z" />
+            </svg>)
+    }
 
     return {
         pizza,
@@ -173,7 +179,8 @@ const getSvg = () => {
         premium,
         baked,
         fried,
-        promocard_border
+        promocard_border,
+        arrow
     }
 }
 export default getSvg

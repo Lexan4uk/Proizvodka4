@@ -12,7 +12,7 @@ function MainCard({ data }) {
     return (
         <section className="main-catalog__section f-column block-normalizer" style={themeColor ?? themeColor} id={data.name}>
             <div className="main-catalog__section-top f-row">
-                <h2 className="main-catalog__section-article title-b">{data.name}</h2>
+                <h2 className="main-catalog__section-article title-l">{data.name}</h2>
                 {arrow_line()}
             </div>
             {data.items.map((item) => (
