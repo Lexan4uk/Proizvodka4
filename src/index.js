@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import Main from '@pages/Main';
 import Actions from '@pages/Actions';
 import Action from '@pages/Action';
+import Product from '@pages/Product';
+
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
@@ -46,6 +48,7 @@ root.render(
             <Route path="/" element={<Main/>} />
             <Route path="/actions" element={<Actions/>} />
             <Route path="/actions/:id" element={<Action />} />
+            <Route path="/product/:id" element={<Product />} />
           </Routes>
         </Router>
       </App>

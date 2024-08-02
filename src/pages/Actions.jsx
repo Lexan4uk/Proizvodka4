@@ -4,7 +4,6 @@ import Footer from '@components/Footer';
 import PromoCard  from '@components/cards/PromoCard';
 import useSWR from 'swr';
 import objectNormalizer from '@scripts/helpers/objectNormalizer';
-import getSvg from '@images/svg'
 
 
 function Actions() {
@@ -12,7 +11,6 @@ function Actions() {
     const normalizedPromos = promotions?.items?.map((item) => {
         return objectNormalizer(item, "actions")
       })
-      console.log(normalizedPromos)
     
     return (
         <>

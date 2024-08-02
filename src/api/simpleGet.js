@@ -5,6 +5,7 @@ export const apiTags = {
     menu: "products/menu",
     promotions: "promotion",
     promotionById: (id) => `promotion/${id}`,
+    productById: (id) => `products/menu/${id}`,
 };
 
 export async function simpleGet(params) {

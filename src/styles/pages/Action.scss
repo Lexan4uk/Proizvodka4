@@ -34,7 +34,9 @@
         height: 100%;
         width: 100%;
         clip-path: polygon(18px 0, 100% 0, 100% 100%, 0 100%, 0 17px);
-
+    }
+    &__text {
+        white-space: pre-line;
     }
 
 

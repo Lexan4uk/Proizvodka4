@@ -164,6 +164,30 @@ const getSvg = () => {
                 <path fill={fill} fillRule="evenodd" clipRule="evenodd" d="M8.65685 19.0709L2.29289 12.7069C1.90237 12.3164 1.90237 11.6832 2.29289 11.2927L8.65686 4.92874C9.04738 4.53821 9.68055 4.53821 10.0711 4.92874C10.4616 5.31926 10.4616 5.95243 10.0711 6.34295L5.41421 10.9998L22 10.9998L22 12.9998L5.41421 12.9998L10.0711 17.6567C10.4616 18.0472 10.4616 18.6803 10.0711 19.0709C9.68054 19.4614 9.04738 19.4614 8.65685 19.0709Z" />
             </svg>)
     }
+    const mini_plus = (fill = "var(--iconcolor)", height = 24, width = 24, customclass = "") => {
+        return (
+            <svg className={`custom-svg ${customclass}`} width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill={fill} d="M18 12.8571H12.8571V18H11.1429V12.8571H6V11.1429H11.1429V6H12.8571V11.1429H18V12.8571Z" />
+            </svg>)
+    }
+    const mini_minus = (stroke = "var(--iconcolor)", height = 24, width = 24, customclass = "") => {
+        return (
+            <svg className={`custom-svg ${customclass}`} width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12H18" stroke={stroke} strokeWidth="1.8" />
+            </svg>)
+    }
+    const cross = (fill = "var(--iconcolor)", height = 24, width = 24, customclass = "") => {
+        return (
+            <svg className={`custom-svg ${customclass}`} width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.3678 21L12.0058 13.6311L4.64373 21L3 19.3573L10.3736 12L3 4.64267L4.64373 3L12.0058 10.3689L19.3678 3.01157L21 4.64267L13.6379 12L21 19.3573L19.3678 21Z" fill={fill} />
+            </svg>)
+    }
+    const info = (stroke = "var(--iconcolor)", height = 24, width = 24, customclass = "") => {
+        return (
+            <svg className={`custom-svg ${customclass}`} width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 11V16M12 21C10.8181 21 9.64778 20.7672 8.55585 20.3149C7.46392 19.8626 6.47177 19.1997 5.63604 18.364C4.80031 17.5282 4.13738 16.5361 3.68508 15.4442C3.23279 14.3522 3 13.1819 3 12C3 10.8181 3.23279 9.64778 3.68508 8.55585C4.13738 7.46392 4.80031 6.47177 5.63604 5.63604C6.47177 4.80031 7.46392 4.13738 8.55585 3.68508C9.64778 3.23279 10.8181 3 12 3C14.3869 3 16.6761 3.94821 18.364 5.63604C20.0518 7.32387 21 9.61305 21 12C21 14.3869 20.0518 16.6761 18.364 18.364C16.6761 20.0518 14.3869 21 12 21ZM12.05 8V8.1H11.95V8H12.05Z" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>)
+    }
 
     return {
         pizza,
@@ -180,7 +204,11 @@ const getSvg = () => {
         baked,
         fried,
         promocard_border,
-        arrow
+        arrow,
+        mini_plus,
+        mini_minus,
+        cross,
+        info
     }
 }
 export default getSvg

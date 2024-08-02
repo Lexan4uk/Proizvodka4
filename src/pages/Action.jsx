@@ -13,15 +13,11 @@ function Action() {
     const {
         arrow
     } = getSvg()
-    console.log(promotion)
     let normalizedPromos
     if (!isLoading && promotion) {
         normalizedPromos = objectNormalizer(promotion.item, "action");
-        console.log(normalizedPromos)
     }
-    const BackButton = () => {
-        window.history.back();
-    };
+    
     return (
         <>
             <header className="action header">
@@ -29,7 +25,7 @@ function Action() {
                     <div className="action__header-content">
 
                     </div>
-                    <button className="action__header-arrow simple-button" onClick={BackButton}>{arrow()}</button>
+                    <button className="action__header-arrow simple-button" onClick={() => window.history.back()}>{arrow()}</button>
                     <h2 className="action__header-title title-xs">Акции</h2>
                 </div>
             </header>
