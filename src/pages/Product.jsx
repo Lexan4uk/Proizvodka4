@@ -1,40 +1,78 @@
 import '@styles/pages/Product.scss';
-import { simpleGet, apiTags } from "@api/simpleGet"
+import { simpleGet, apiTags } from "@api/simpleGet";
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, useMemo } from 'react';
 import useSWR from 'swr';
 import objectNormalizer from '@scripts/helpers/objectNormalizer';
-import getSvg from '@images/svg'
-import Footer from '@components/Footer';
+import getSvg from '@images/svg';
+
+const ProcessOptions = ({ data, selectedThickness, setSelectedIdBySize, selectedIdBySize, setCurrentPrice }) => {
+    const options = useMemo(() => data.reduce((acc, sortItem) => {
+        const { thickness, size, id, min_price } = sortItem;
+
+        if (!acc[thickness]) {
+            acc[thickness] = [];
+        }
+
+        if (!acc[thickness].some(item => item.size === size)) {
+            acc[thickness].push({ size, id, min_price });
+        }
+
+        return acc;
+    }, {}), [data]);
+    console.log(options )
+
+    const availableSizes = options[selectedThickness] || [];
+    useEffect(() => {
+        setSelectedIdBySize(availableSizes[0].id);
+        setCurrentPrice(availableSizes[0].min_price)
+    }, [availableSizes]);
+    console.log(selectedIdBySize)
+
+
+return (
+    <div className="product__options-block f-column">
+        <h2 className="product__option-article text-yellow text-m">Размер пиццы</h2>
+        <div className="product__options-holder f-row">
+            {availableSizes.map(({ size, id, min_price}) => (
+                <button key={id} className={`product__option button-text ${selectedIdBySize === id ? 'product__option_active' : ''}`} onClick={() => {setSelectedIdBySize(id); setCurrentPrice(min_price)}}>{size} см </button>
+            ))}
+        </div>
+    </div>
+);
+};
+
 
 function Product() {
     const { id } = useParams();
     const { data: product, error, isLoading: pIsLoading } = useSWR(apiTags.productById(id), simpleGet);
+    const [selectedProduct, setSelectedProduct] = useState();
+    const [selectedThickness, setSelectedThickness] = useState('thin');
+    const [selectedIdBySize, setSelectedIdBySize] = useState();
+
+    const [currentPrice, setCurrentPrice] = useState()
     const [productCount, setProductCount] = useState(1);
-    const [selectedProduct, setSelectedProduct] = useState()
-    
-    const [price, setPrice] = useState()
+    const [price, setPrice] = useState();
+
     useEffect(() => {
         if (product && !pIsLoading) {
-            product.items.map((item) => {
-                objectNormalizer(item, "singleProduct")
-            })
-            console.log(product.items)
+            product.items.forEach((item) => {
+                objectNormalizer(item, "singleProduct");
+            });
             setSelectedProduct(product.items[0]);
         }
     }, [pIsLoading]);
 
     useEffect(() => {
-        setPrice(selectedProduct?.min_price * productCount)
-    }, [selectedProduct, productCount]) //временно
+        setPrice(currentPrice * productCount);
+    }, [currentPrice, productCount]);
 
     const {
         mini_plus,
         mini_minus,
         cross,
         info
-    } = getSvg()
+    } = getSvg();
 
     return (
         <>
@@ -54,9 +92,18 @@ function Product() {
                         </div>
                         <span className="product__text text-l">{selectedProduct?.description}</span>
                     </div>
+                    <div className="product__options">
+                        <h2 className="product__option-article text-yellow text-m">Тип теста</h2>
+                        <div className="product__options-holder f-row">
+                            <button className={`product__option button-text ${selectedThickness === 'thin' ? 'product__option_active' : ''}`} onClick={() => setSelectedThickness('thin')}>Тонкое</button>
+                            <button className={`product__option button-text ${selectedThickness === 'traditional' ? 'product__option_active' : ''}`} onClick={() => setSelectedThickness('traditional')}>Традиционное</button>
+                        </div>
+                    </div>
+                    {selectedProduct && <ProcessOptions data={product.items} selectedThickness={selectedThickness} setSelectedIdBySize={setSelectedIdBySize} selectedIdBySize={selectedIdBySize} setCurrentPrice={setCurrentPrice} />}
+
                 </section>
             </main>
-            <footer className="product footer footer_props ">
+            <footer className="product footer footer_props">
                 <div className="product__footer-content block-normalizer f-row gap-16">
                     <div className="product__footer-counter-holder f-row">
                         <button className="product__footer-counter-btn button" onClick={() => productCount > 1 && setProductCount(productCount - 1)}>{mini_minus()}</button>
@@ -66,6 +113,8 @@ function Product() {
                     <button className="product__footer-cart-add button-l button">В корзину за {price}Р</button>
                 </div>
             </footer>
-        </>)
+        </>
+    );
 }
-export default Product
+
+export default Product;

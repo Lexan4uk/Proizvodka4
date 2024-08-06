@@ -12,9 +12,9 @@ const objectNormalizer = (item, path = "") => {
             if (item.name.includes("25см"))
                 item.size = 25
             if (item.name.includes("ТТ"))
-                item.dough = "thin"
+                item.thickness = "thin"
             else
-                item.dough = "traditional"
+                item.thickness = "traditional"
         }
         console.log(item)
         if (path === "action" || path === "singleProduct")

@@ -32,7 +32,20 @@
     &__header {
         justify-content: space-between;
     }
-
+    &__option-article {
+        margin-bottom: 12px;
+    }
+    &__option {
+        background: none;
+        flex: 1;
+        padding: 6px 0px;
+        border: 1px solid var(--dark-gray);
+        color: var(--gray-text-inactive) ;
+        &_active {
+            border: 1px solid var(--yellow);
+            color: var(--yellow) ;
+        }
+    }
 
 
 

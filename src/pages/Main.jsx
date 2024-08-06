@@ -18,28 +18,33 @@ function Main() {
   const { data: options, error: opError, isLoading: opIsLoading } = useSWR(apiTags.menu_categories, simpleGet);
   const { data: goods, error: gError, isLoading: gIsLoading } = useSWR(apiTags.menu, simpleGet);
   const { data: promotions, error: pError, isLoading: pIsLoading } = useSWR(apiTags.promotions, simpleGet);
-  const normalizedPromos = promotions?.items?.map((item) => {
-    return objectNormalizer(item, "actions")
-  })
-  
-  const sortedGoods = goods?.items?.reduce((acc, item) => {
-    objectNormalizer(item, "product")
-    const parentGroupId = item.parent_group.id;
-    const groupName = item.parent_group.name;
-    const groupColor = item.parent_group.color || 'defaultColor';
-    let group = acc.find(group => group.parent_group_id === parentGroupId);
-    if (!group) {
-      group = {
-        parent_group_id: parentGroupId,
-        name: groupName,
-        color: groupColor,
-        items: []
-      };
-      acc.push(group);
-    }
-    group.items.push(item);
-    return acc;
-  }, []);
+  let normalizedPromos
+  if (!pIsLoading) {
+    normalizedPromos = promotions.items.map((item) => {
+      return objectNormalizer(item, "actions")
+    })
+  }
+  let sortedGoods
+  if (!gIsLoading) {
+    sortedGoods = goods.items.reduce((acc, item) => {
+      objectNormalizer(item, "product")
+      const parentGroupId = item.parent_group.id;
+      const groupName = item.parent_group.name;
+      const groupColor = item.parent_group.color || 'defaultColor';
+      let group = acc.find(group => group.parent_group_id === parentGroupId);
+      if (!group) {
+        group = {
+          parent_group_id: parentGroupId,
+          name: groupName,
+          color: groupColor,
+          items: []
+        };
+        acc.push(group);
+      }
+      group.items.push(item);
+      return acc;
+    }, {});
+  }
 
   const [activeDelivery, setActiveDelivery] = useState('Самовывоз');
   const [isFixed, setIsFixed] = useState(false);
