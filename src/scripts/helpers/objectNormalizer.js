@@ -5,6 +5,7 @@ const objectNormalizer = (item, path = "") => {
         if (path === "action" && item.cover && item.cover === "")
             item.cover = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOwRConBYl2t6L8QMOAQqa5FDmPB_bg7EnGA&s';
         if (path === "singleProduct" && item.parent_group.name.includes("Пицца")) {
+            item.isPizza = true
             if (item.name.includes("40см"))
                 item.size = 40
             if (item.name.includes("33см"))
@@ -16,7 +17,6 @@ const objectNormalizer = (item, path = "") => {
             else
                 item.thickness = "traditional"
         }
-        console.log(item)
         if (path === "action" || path === "singleProduct")
             return item //можно убрать. Убирает хреф у акции
         item.href = `${path}/${item.id}`

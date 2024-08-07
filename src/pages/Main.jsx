@@ -43,7 +43,7 @@ function Main() {
       }
       group.items.push(item);
       return acc;
-    }, {});
+    }, []);
   }
 
   const [activeDelivery, setActiveDelivery] = useState('Самовывоз');
