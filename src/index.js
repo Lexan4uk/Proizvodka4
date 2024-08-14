@@ -4,6 +4,8 @@ import Main from '@pages/Main';
 import Actions from '@pages/Actions';
 import Action from '@pages/Action';
 import Product from '@pages/Product';
+import Search from '@pages/Search';
+
 
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -49,6 +51,7 @@ root.render(
             <Route path="/actions" element={<Actions/>} />
             <Route path="/actions/:id" element={<Action />} />
             <Route path="/product/:id" element={<Product />} />
+            <Route path="/search/:type" element={<Search />} />
           </Routes>
         </Router>
       </App>

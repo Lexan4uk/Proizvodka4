@@ -6,6 +6,7 @@
 
     &__cities-holder {
         gap: 4px;
+        align-items: center;
     }
 
     &__cities-dropdown {
@@ -27,4 +28,6 @@
     &__actions-holder {
         align-items: center;
     }
+
+   
 }

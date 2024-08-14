@@ -21,11 +21,11 @@ function Product() {
     const [productCount, setProductCount] = useState(1);
     const [price, setPrice] = useState();
 
-    const [addition, addAddition] = useState({});
+    const [addition, updateAddition] = useState({});
+    
     useEffect(() => {
         console.log(addition)
     }, [addition])
-
 
     useEffect(() => {
         if (product && !pIsLoading) {
@@ -39,8 +39,12 @@ function Product() {
     }, [pIsLoading]);
 
     useEffect(() => {
-        setPrice(currentPrice * productCount);
-    }, [currentPrice, productCount]);
+        const totalAdditionPrice = Object.values(addition).reduce((acc, item) => {
+            return acc + (item.min_price || 0);
+        }, 0);
+
+        setPrice((currentPrice + totalAdditionPrice) * productCount);
+    }, [currentPrice, productCount, addition]);
         
     const {
         mini_plus,
@@ -81,7 +85,7 @@ function Product() {
                                 <h2 className="product__option-article text-yellow text-m">Дополнительные добавки</h2>
                                 <div className="product__additions-holder">
                                     {selectedProduct.product_modifiers.map((addition) => (
-                                        <ProductAdditionsCard key={addition.id} addition={addition} addAddition={addAddition} selectedAdditions={addition}/>
+                                        <ProductAdditionsCard key={addition.id} addition={addition} updateAddition={updateAddition} selectedAdditions={addition} setCurrentPrice={setCurrentPrice}/>
                                     ))}
                                 </div>
                             </div>

@@ -115,7 +115,7 @@ function Main() {
         </aside>
 
         <div ref={navWrapperRef} className={`main-catalog__goods-nav-wrapper f-row ${isFixed ? 'main-catalog__goods-nav-wrapper_fixed' : ''}`}>
-          {isFixed && <a className="main-catalog__static-nav-search" href="/serch">{search()}</a>}
+          {isFixed && <a className="main-catalog__static-nav-search" href="/search">{search()}</a>}
           <nav className={`main-catalog__goods-nav-holder nav-swiper ${isFixed ? 'main-catalog__goods-nav-holder_fixed' : ''}`} ref={navRef}>
             <ul className="main-catalog__goods-nav swiper-wrapper">
               {
