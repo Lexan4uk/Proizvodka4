@@ -68,7 +68,7 @@ function Actions() {
                 </section>
                 <footer className="footer footer_props search__footer">
                     <nav className="footer__nav">
-                        <button className={`footer__auth-btn button-l search__footer-btn ${!selectedCity && "search__footer-btn_inactive"}`}>Сохранить</button>
+                        <button className={`footer__auth-btn button-l ${!selectedCity && "footer__auth-btn_inactive"}`}>Сохранить</button>
                     </nav>
                 </footer>
             </main>

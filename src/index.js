@@ -5,6 +5,8 @@ import Actions from '@pages/Actions';
 import Action from '@pages/Action';
 import Product from '@pages/Product';
 import Search from '@pages/Search';
+import Auth from '@pages/Auth';
+
 
 
 
@@ -52,6 +54,7 @@ root.render(
             <Route path="/actions/:id" element={<Action />} />
             <Route path="/product/:id" element={<Product />} />
             <Route path="/search/:type" element={<Search />} />
+            <Route path="/auth" element={<Auth />} />
           </Routes>
         </Router>
       </App>

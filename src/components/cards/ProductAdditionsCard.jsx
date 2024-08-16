@@ -1,13 +1,14 @@
 import '@styles/pages/Product.scss';
 import getSvg from '@images/svg';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-const ProductAdditionsCard = ({ addition, updateAddition, selectedAdditions, setCurrentPrice }) => {
+const ProductAdditionsCard = ({ addition, updateAddition }) => {
     const normalizedAddition = addition.product;
     const {
         mini_plus,
         mini_minus,
     } = getSvg();
+
     const [btnActive, setBtnActive] = useState(true)
     let type = "card"
     if (normalizedAddition.min_price === 0)

@@ -85,7 +85,7 @@ function Product() {
                                 <h2 className="product__option-article text-yellow text-m">Дополнительные добавки</h2>
                                 <div className="product__additions-holder">
                                     {selectedProduct.product_modifiers.map((addition) => (
-                                        <ProductAdditionsCard key={addition.id} addition={addition} updateAddition={updateAddition} selectedAdditions={addition} setCurrentPrice={setCurrentPrice}/>
+                                        <ProductAdditionsCard key={addition.id} addition={addition} updateAddition={updateAddition}/>
                                     ))}
                                 </div>
                             </div>

@@ -38,12 +38,4 @@
             color: var(--yellow);
         }
     }
-    &__footer-btn {
-        &_inactive {
-            background: var(--gray-text-inactive) !important;
-            color: var(--white) !important;
-            pointer-events: none;
-            opacity: 0.8;
-        }
-    }
 }
