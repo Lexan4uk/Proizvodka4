@@ -16,6 +16,8 @@ function Footer({ active }) {
     const {
         isAuthorised,
     } = useAuth();
+
+    
     return (
         <footer className="footer footer_props">
             <nav className="footer__nav">
@@ -23,12 +25,11 @@ function Footer({ active }) {
                     <a href="/auth" className="button-l footer__auth-btn">Авторизоваться</a>)
                     : (<ul className="footer__holder f-row">
                         {option({ href: "/", icon: pizza(), text: "Меню", active: active === 1 })}
-                        {option({ href: "/", icon: person(), text: "Профиль", active: active === 2 })}
+                        {option({ href: "/profile", icon: person(), text: "Профиль", active: active === 2 })}
                         {option({ href: "/actions", icon: ticket(), text: "Акции", active: active === 3 })}
                         {option({ href: "/", icon: pin(), text: "Контакты", active: active === 4 })}
                         {option({ href: "/", icon: cart(), text: "Корзина", active: active === 5 })}
                     </ul>)}
-
             </nav>
         </footer>
     );

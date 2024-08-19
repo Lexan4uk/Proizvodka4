@@ -1,19 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
 import Main from '@pages/Main';
 import Actions from '@pages/Actions';
 import Action from '@pages/Action';
 import Product from '@pages/Product';
 import Search from '@pages/Search';
 import Auth from '@pages/Auth';
+import Profile from '@pages/Profile';
 
 
-
-
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
-
+import { RecoilRoot, useRecoilState } from 'recoil';
+import useAuth from '@scripts/custom_hooks/useAuth';
+import { isUserFetchingState } from '@scripts/atoms/authState';
 import reportWebVitals from './reportWebVitals';
+import { useEffect } from 'react';
+
+
 import '@fonts/fonts.scss'
 import '@globalStyles/globals.scss';
 import '@globalStyles/mixins.scss';
@@ -21,7 +24,7 @@ import '@globalStyles/normalize.scss';
 import '@globalStyles/variables.scss';
 
 const App = (props) => {
-  /*const [isUserFetching, setIsUserFetching] = useRecoilState(isUserFetchingState);
+  const [isUserFetching, setIsUserFetching] = useRecoilState(isUserFetchingState);
 
   const {
     initUser,
@@ -34,9 +37,7 @@ const App = (props) => {
       initUser()
       setIsUserFetching(false)
     }
-  }, [isAuthorised, isUserFetching])*/
-
-
+  }, [isAuthorised, isUserFetching])
 
   return props.children
 }
@@ -55,6 +56,7 @@ root.render(
             <Route path="/product/:id" element={<Product />} />
             <Route path="/search/:type" element={<Search />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/profile" element={<Profile/>} />
           </Routes>
         </Router>
       </App>

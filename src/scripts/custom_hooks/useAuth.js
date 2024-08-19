@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
 import { isAuthorisedState } from '@scripts/atoms/authState';
-//import { login } from '@api/login';
+import { login } from "@api/login"
 import {accDataAtom } from '@scripts/atoms/accDataAtom'
 
 function useAuth() {
@@ -11,15 +11,18 @@ function useAuth() {
   const initUser = async () => {
     const token = localStorage.getItem('token');
       if (!isAuthorised && token) {
-        //const responseLogin = await login();
-        setIsAuthorised(true)
-        //setAccData(responseLogin.item)
+        const responseLogin = await login();
+        if (responseLogin) {
+          setIsAuthorised(true);
+          setAccData(responseLogin.item);
+          return true
+        }
       }
+      return false
   }
 
   return {
     isAuthorised,
-    setIsAuthorised,
     initUser,
     accData
   };

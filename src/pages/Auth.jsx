@@ -15,17 +15,11 @@ const Auth = () => {
             content = <PhoneEnter setLabel={setLabel} setAuthData={setAuthData}/>;
             break;
         case 2:
-            content = <LoginPass setLabel={setLabel} setAuthData={setAuthData} authData={authData}/>;
-            break;
-        case 'email':
-            content = <h1>Введите ваш email</h1>;
+            content = <LoginPass authData={authData}/>;
             break;
         default:
             content = <h1>Неизвестный тип</h1>;
             break;
-    }
-    const handleStep = () => {
-
     }
 
     return (

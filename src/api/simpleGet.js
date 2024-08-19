@@ -14,8 +14,10 @@ export async function simpleGet(params) {
         const response = await api.get(params);
         return response.data;
     }
-    else
+    else {
+        console.log("Неверная форма запроса")
         return null
+    }
 
 }
 export default simpleGet

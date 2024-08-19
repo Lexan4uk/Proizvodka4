@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export const selectedCity = atom({
+export const selectedCityAtom = atom({
   key: 'selectedCity',
   default: undefined,
 });

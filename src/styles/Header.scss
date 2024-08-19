@@ -16,12 +16,9 @@
         padding: 5px;
         
     }
-
-    &__cities-dropdown-option {
-        background: var(--black);
-        :hover {
-            background: var(--dark-gray);
-        }
+    &__cities-choose {
+        --iconcolor: var(--white);
+        align-items: center;
     }
     
 

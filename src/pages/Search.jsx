@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import useSWR from 'swr';
 import getSvg from '@images/svg'
 import { useState, useEffect } from 'react';
+import useAdress from '@scripts/custom_hooks/useAdress';
 
 
 
@@ -17,6 +18,10 @@ function Actions() {
     const [filteredCities, setFilteredCities] = useState()
 
     const [selectedCity, setSelectedCity] = useState()
+
+    const {
+        selectCity,
+    } = useAdress()
 
     useEffect(() => {
         if (rawCities && rawCities.items) {
@@ -47,6 +52,10 @@ function Actions() {
     const handleChange = (event) => {
         setSearchItem(event.target.value);
     };
+    const handleSave = () => {
+        selectCity(selectedCity)
+        navigate("/")
+    }
 
     return (
         <>
@@ -68,7 +77,7 @@ function Actions() {
                 </section>
                 <footer className="footer footer_props search__footer">
                     <nav className="footer__nav">
-                        <button className={`footer__auth-btn button-l ${!selectedCity && "footer__auth-btn_inactive"}`}>Сохранить</button>
+                        <button className={`footer__auth-btn button-l ${!selectedCity && "footer__auth-btn_inactive"}`} onClick={handleSave}>Сохранить</button>
                     </nav>
                 </footer>
             </main>

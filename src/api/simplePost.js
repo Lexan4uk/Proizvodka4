@@ -10,8 +10,9 @@ export async function simplePost(path, data) {
         const response = await api.post(path, data);
         return response.data;
     }
-    else
+    else {
+        console.log("Неверная форма запроса")
         return null
-
+    }
 }
 export default simplePost
