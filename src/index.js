@@ -5,7 +5,7 @@ import Product from '@pages/Product';
 import Search from '@pages/Search';
 import Auth from '@pages/Auth';
 import Profile from '@pages/Profile';
-
+import EditProfile from '@pages/EditProfile';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -57,6 +57,7 @@ root.render(
             <Route path="/search/:type" element={<Search />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/profile" element={<Profile/>} />
+            <Route path="/profile/edit" element={<EditProfile/>} />
           </Routes>
         </Router>
       </App>

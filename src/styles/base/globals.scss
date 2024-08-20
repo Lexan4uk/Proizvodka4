@@ -145,6 +145,9 @@ main {
 .text-red {
   color: var(--red)
 }
+.text-black {
+  color: var(--black)
+}
 
 
 .button-s {
@@ -172,4 +175,7 @@ main {
 }
 .gap-4 {
   gap: 4px;
+}
+.bg-yellow {
+  background: var(--yellow);
 }
