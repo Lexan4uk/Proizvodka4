@@ -30,17 +30,6 @@ function Profile() {
     }
     console.log(accData)
 
-    /*if (!isAuthorised) {
-        return (
-            <>
-                <main className="profile f-row block-normalizer">
-                    <h1 className="profile__error">Авторизуйтесь для просмотра профиля!</h1>
-                </main>
-                <Footer active={2} />
-            </>
-
-        )
-    }*/
     return (
         <>
             <div className="profile">
@@ -56,7 +45,7 @@ function Profile() {
                                     <span className="profile__user-name title-s text-black">{accData?.first_name}</span>
                                     <span className="profile__user-phone text-m text-black">{accData.phone_number && accData.phone_number.replace(/^(\+7)(\d{3})(\d{3})(\d{2})(\d{2})$/, '$1 $2 $3 $4 $5')}</span>
                                 </div>
-                                <a className="profile__edit" href="/">{pen()}</a>
+                                <a className="profile__edit" href="/profile/edit">{pen()}</a>
                                 <span className="profile__top-triangle"></span>
                             </div>
                             <div className="profile__user-block-bottom bg-yellow">

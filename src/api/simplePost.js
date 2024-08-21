@@ -2,7 +2,8 @@ import { api } from "@api/api";
 
 export const apiTags = {
     phone_enter: "user/login",
-    get_token: "authentication_token"
+    get_token: "authentication_token",
+    edit_user: "user/profile"
 };
 
 export async function simplePost(path, data) {

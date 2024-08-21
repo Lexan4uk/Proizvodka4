@@ -22,9 +22,6 @@ function Action() {
         <>
             <header className="action header">
                 <div className="header__holder block-normalizer f-row">
-                    <div className="action__header-content">
-
-                    </div>
                     <button className="action__header-arrow simple-button" onClick={() => window.history.back()}>{arrow()}</button>
                     <h2 className="action__header-title title-xs">Акции</h2>
                 </div>

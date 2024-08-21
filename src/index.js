@@ -6,6 +6,8 @@ import Search from '@pages/Search';
 import Auth from '@pages/Auth';
 import Profile from '@pages/Profile';
 import EditProfile from '@pages/EditProfile';
+import AuthError from '@pages/AuthError';
+
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -65,7 +67,46 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
+/*const App = (props) => {
+  const [isUserFetching, setIsUserFetching] = useRecoilState(isUserFetchingState);
+
+  const {
+    initUser,
+    isAuthorised
+  } = useAuth();
+
+  useEffect(() => {
+    if (!isUserFetching && !isAuthorised) {
+      setIsUserFetching(true)
+      initUser()
+      setIsUserFetching(false)
+    }
+  }, [isAuthorised, isUserFetching])
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/actions" element={<Actions />} />
+        <Route path="/actions/:id" element={<Action />} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route path="/search/:type" element={<Search />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/profile" element={isAuthorised ? <Profile /> : <AuthError />} />
+        <Route path="/profile/edit" element={isAuthorised ? <EditProfile /> : <AuthError />} />
+      </Routes>
+    </Router>
+  )
+}
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
+  </React.StrictMode>
+);*/
 reportWebVitals();
