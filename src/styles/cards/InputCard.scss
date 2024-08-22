@@ -1,0 +1,27 @@
+.inputcard {
+    &__input-border {
+        border: 1px solid var(--gray-text-inactive);
+        padding: 16px;
+        &:focus-within {
+            border: 1px solid var(--yellow);
+        }
+        &_error {
+            border: 1px solid var(--red);
+        }
+    }
+    &__input {
+        appearance: none;
+        background: none;
+        width: 100%;
+        color: var(--gray-text-inactive);
+        &:focus {
+            outline: none;
+        }
+        &::placeholder {
+            color: var(--gray-text-inactive);
+        }
+    }
+    &__error {
+
+    }
+}

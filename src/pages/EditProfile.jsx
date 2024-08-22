@@ -1,26 +1,46 @@
 import '@styles/pages/EditProfile.scss';
+import InputCard from '@components/cards/InputCard'
 
+import { useState } from 'react';
 import { simplePost, apiTags } from "@api/simplePost"
 import getSvg from '@images/svg'
 import useAuth from '@scripts/custom_hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
-import { InputMask } from '@react-input/mask';
 
 
 
 function EditProfile() {
+    const [isQuerry, setIsQuerry] = useState(false)
+    const [querryResult, setQuerryResult] = useState({ text: "", code: undefined })
+
     const {
         arrow
     } = getSvg()
 
+    const {
+        initUser
+    } = useAuth()
+
+
     const methods = useForm();
-    const { handleSubmit, register, watch, formState: { errors } } = methods
+    const { handleSubmit, trigger, formState: { errors } } = methods;
+
+
+    const handleSaveClick = async () => {
+        const isValid = await trigger();
+        if (isValid) {
+            handleSubmit(onSubmit)();
+        }
+        else {
+            setQuerryResult({text: "Исправьте введённые данные!"})
+        }
+    };
 
     const onSubmit = async (data) => {
+        setIsQuerry(true)
+
         const [day, month, year] = data.birthday.split('-');
         const normalizedData = {
-            //имя поменять нельзя :(
             "phone": data.phone.replace(/[+]/g, '').replace(/[^0-9]/g, ''),
             "email": data.email,
             "birthday": {
@@ -29,13 +49,27 @@ function EditProfile() {
                 "day": parseInt(day, 10)
             }
         }
-        
-        console.log(normalizedData)
-        const responce = await simplePost(apiTags.edit_user, normalizedData)
-        console.log(responce)
+        const response = await simplePost(apiTags.edit_user, normalizedData)
+        if (response.code === 200) {
+            setQuerryResult({ text: "Изменения применены!", code: response.code })
+            initUser()
+        }
+        else {
+            const errorMessages = response.payload
+                .map(error => Object.values(error)[0].message)
+                .join(' ');
+
+            setQuerryResult({
+                text: `Ошибка ${response.code}! ${errorMessages}`,
+                code: response.code
+            });
+        }
+        console.log(response)
+
+        setIsQuerry(false)
     }
 
-    return (
+    return (    
         <>
             <header className="editprofile header">
                 <div className="header__holder block-normalizer f-row">
@@ -48,36 +82,43 @@ function EditProfile() {
                     <FormProvider {...methods} >
                         <form className="editprofile__form f-column gap-16" onSubmit={handleSubmit(onSubmit)}>
                             <div className="editprofile__form-element f-column gap-4">
-                                <h2 className="editprofile__form-element-title text-m">Как к вам обращаться?</h2>
-                                <div className="editprofile__input-border">
-                                    <input {...register("first_name")} className="editprofile__input" placeholder="Введите ваше имя" type="text" />
-                                </div>
-                            </div>
-                            <div className="editprofile__form-element f-column gap-4">
                                 <h2 className="editprofile__form-element-title text-m">Ваш номер телефона</h2>
-                                <div className="editprofile__input-border">
-                                    <InputMask {...register("phone")} className="editprofile__input" mask='+7 (___) ___-__-__' replacement={{ _: /\d/ }} showMask type='tel' />
-                                </div>
+                                <InputCard type="InputMask" dataName="phone" mask='+7 (___) ___-__-__' replacement={{ _: /\d/ }} isShowMask={true} inputType="tel" validationRules={{
+                                        required: "Телефон обязателен для заполнения",
+                                        pattern: {
+                                            value: /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
+                                            message: "Некорректный формат номера телефона"
+                                        }
+                                    }}/>
                             </div>
                             <div className="editprofile__form-element f-column gap-4">
                                 <h2 className="editprofile__form-element-title text-m">Ваш email</h2>
-                                <div className="editprofile__input-border">
-                                    <input {...register("email")} className="editprofile__input" placeholder="Введите ваш email" type="email" />
-                                </div>
+                                <InputCard type="Input" dataName="email" inputType="email" setPlaceholder="Введите ваш email" validationRules={{
+                                        required: "Email обязателен для заполнения",
+                                        pattern: {
+                                            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                            message: "Некорректный формат email"
+                                        }
+                                    }}/>
                             </div>
                             <div className="editprofile__form-element f-column gap-4">
                                 <h2 className="editprofile__form-element-title text-m">Дата рождения</h2>
-                                <div className="editprofile__input-border">
-                                    <InputMask {...register("birthday")} className="editprofile__input" mask="ДД-ММ-ГГГГ" replacement={{ Д: /\d/, М: /\d/, Г: /\d/ }} showMask />
-                                </div>
+                                <InputCard type="InputMask" dataName="birthday" mask='ДД-ММ-ГГГГ' replacement={{ Д: /\d/, М: /\d/, Г: /\d/ }} isShowMask={true} inputType="text" validationRules={{
+                                        required: "Дата рождения обязательна для заполнения",
+                                        pattern: {
+                                            value: /^\d{2}-\d{2}-\d{4}$/,
+                                            message: "Некорректный формат даты"
+                                        }
+                                    }}/>
                             </div>
+                            <span className={`editprofile__result text-l ${querryResult.code !== 200 && "text-red"}`}>{querryResult.text}</span>
                         </form>
                     </FormProvider>
                 </div>
             </main>
             <footer className="editprofile footer footer_props">
                 <nav className="footer__nav">
-                    <button className={`button-l footer__auth-btn ${false && "footer__auth-btn_inactive"}`} onClick={handleSubmit(onSubmit)}>Сохранить</button>
+                    <button className={`button-l footer__auth-btn ${isQuerry && "footer__auth-btn_inactive"}`} onClick={handleSaveClick}>Сохранить</button>
                 </nav>
             </footer>
         </>
