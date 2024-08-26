@@ -6,7 +6,8 @@ export const apiTags = {
     promotions: "promotion",
     promotionById: (id) => `promotion/${id}`,
     productById: (id) => `products/menu/${id}`,
-    city: "delivery/city/filter_city"
+    city: "delivery/city/filter_city",
+    deliver_points: "delivery/delivery_point/get"
 };
 
 export async function simpleGet(params) {

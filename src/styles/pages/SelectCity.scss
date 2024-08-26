@@ -1,4 +1,4 @@
-.search {
+.select-city {
     &_props {
         min-height: 100vh;
     }
@@ -10,12 +10,6 @@
     }
     &__article {
         margin-bottom: 24px;
-    }
-    &__search-field {
-        position: relative;
-        padding: 16px;
-        border: 1px solid var(--gray-text-inactive);
-        justify-content: space-between;
     }
     &__search {
         appearance: none;

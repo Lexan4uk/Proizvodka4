@@ -3,6 +3,7 @@ import getSvg from '@images/svg'
 import PropTypes from 'prop-types';
 import option from '@components/menu_elements/Footer_option'
 import useAuth from '@scripts/custom_hooks/useAuth';
+import { Link } from "react-router-dom";
 
 
 function Footer({ active }) {
@@ -24,7 +25,7 @@ function Footer({ active }) {
             <footer className="footer footer_props">
                 <nav className="footer__nav">
                     {!isAuthorised ? (
-                        <a href="/auth" className="button-l footer__auth-btn">Авторизоваться</a>)
+                        <Link href="/auth" className="button-l footer__auth-btn">Авторизоваться</Link>)
                         : (<ul className="footer__holder f-row">
                             {option({ href: "/", icon: pizza(), text: "Меню", active: active === 1 })}
                             {option({ href: "/profile", icon: person(), text: "Профиль", active: active === 2 })}

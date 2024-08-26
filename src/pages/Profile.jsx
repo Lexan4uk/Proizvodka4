@@ -1,10 +1,10 @@
 import '@styles/pages/Profile.scss';
 import Footer from '@components/Footer';
 
-import { simpleGet, apiTags } from "@api/simpleGet"
 import getSvg from '@images/svg'
 import useAuth from '@scripts/custom_hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 
 
@@ -31,7 +31,7 @@ function Profile() {
     console.log(accData)
 
     return (
-        <>
+        <main>
             <div className="profile">
                 <div className="profile__content block-normalizer f-column">
                     <header className="profile__header f-row">
@@ -45,7 +45,7 @@ function Profile() {
                                     <span className="profile__user-name title-s text-black">{accData?.first_name}</span>
                                     <span className="profile__user-phone text-m text-black">{accData.phone_number && accData.phone_number.replace(/^(\+7)(\d{3})(\d{3})(\d{2})(\d{2})$/, '$1 $2 $3 $4 $5')}</span>
                                 </div>
-                                <a className="profile__edit" href="/profile/edit">{pen()}</a>
+                                <Link className="profile__edit" to="/profile/edit">{pen()}</Link>
                                 <span className="profile__top-triangle"></span>
                             </div>
                             <div className="profile__user-block-bottom bg-yellow">
@@ -61,28 +61,28 @@ function Profile() {
                             </div>
                         </div>
                         <div className="profile__user-delivery-block f-row gap-16">
-                            <a className="profile__user-delivery-link" href="/"><span className="profile__user-delivery-link_text text-yellow text-l">Мои заказы</span></a>
-                            <a className="profile__user-delivery-link" href="/"><span className="profile__user-delivery-link_text text-yellow text-l">Адреса доставки</span></a>
+                            <Link className="profile__user-delivery-link" to="/"><span className="profile__user-delivery-link_text text-yellow text-l">Мои заказы</span></Link>
+                            <Link className="profile__user-delivery-link" to="/profile/addresses"><span className="profile__user-delivery-link_text text-yellow text-l">Адреса доставки</span></Link>
                         </div>
                         <div className="profile__user-links-block">
-                            <a href="/" className="profile__user-link f-row">
+                            <Link to="/" className="profile__user-link f-row">
                                 <span className="profile__user-link-text text-l">Сменить пароль</span>
                                 {arrow_right()}
-                            </a>
-                            <a href="/" className="profile__user-link f-row">
+                            </Link>
+                            <Link to="/" className="profile__user-link f-row">
                                 <span className="profile__user-link-text text-l">Оставить отзыв</span>
                                 {arrow_right()}
-                            </a>
-                            <a href="/" className="profile__user-link f-row">
+                            </Link>
+                            <Link to="/" className="profile__user-link f-row">
                                 <span className="profile__user-link-text text-l">Стать тайным покупателем</span>
                                 {arrow_right()}
-                            </a>
+                            </Link>
                         </div>
                     </main>
                 </div>
             </div>
             <Footer active={2} />
-        </>
+        </main>
     )
 }
 export default Profile;

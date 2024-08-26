@@ -43,7 +43,7 @@ function ProductCard({ data }) {
                 </div>
             </div>
             <div className="menu-card__buttons-holder f-row">
-                <button href="/" className="menu-card__button-choose menu-card__button-choose_left f-row gap-4 button-s button-s_slice-left">{cart("var(--white)")}Выбрать <span className="menu-card__button-choose_text-right">От {data.min_price} Р</span></button>
+                <button className="menu-card__button-choose menu-card__button-choose_left f-row gap-4 button-s button-s_slice-left">{cart("var(--white)")}Выбрать <span className="menu-card__button-choose_text-right">От {data.min_price} Р</span></button>
             </div>
 
         </a>

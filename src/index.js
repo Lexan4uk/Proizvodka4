@@ -2,11 +2,13 @@ import Main from '@pages/Main';
 import Actions from '@pages/Actions';
 import Action from '@pages/Action';
 import Product from '@pages/Product';
-import Search from '@pages/Search';
+import SelectCity from '@pages/SelectCity';
 import Auth from '@pages/Auth';
 import Profile from '@pages/Profile';
 import EditProfile from '@pages/EditProfile';
 import AuthError from '@pages/AuthError';
+import Addresses from '@pages/Addresses';
+
 
 
 import React from 'react';
@@ -56,10 +58,11 @@ root.render(
             <Route path="/actions" element={<Actions/>} />
             <Route path="/actions/:id" element={<Action />} />
             <Route path="/product/:id" element={<Product />} />
-            <Route path="/search/:type" element={<Search />} />
+            <Route path="/city" element={<SelectCity />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/profile" element={<Profile/>} />
             <Route path="/profile/edit" element={<EditProfile/>} />
+            <Route path="/profile/addresses" element={<Addresses/>} />
           </Routes>
         </Router>
       </App>

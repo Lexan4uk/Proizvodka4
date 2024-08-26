@@ -1,6 +1,7 @@
 import '@styles/pages/Action.scss';
 import { simpleGet, apiTags } from "@api/simpleGet"
 import { useParams } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import useSWR from 'swr';
 import objectNormalizer from '@scripts/helpers/objectNormalizer';
@@ -37,7 +38,7 @@ function Action() {
             </main>
             <footer className="action footer footer_props ">
                 <div className="action__footer-content block-normalizer">
-                    <a className="action__footer-btn button-l" href="/">В МЕНЮ</a>
+                    <Link className="action__footer-btn button-l" to="/">В МЕНЮ</Link>
                 </div>
             </footer>
         </>

@@ -12,6 +12,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import getSvg from '@images/svg'
+import { Link } from "react-router-dom";
 
 
 function Main() {
@@ -99,16 +100,16 @@ function Main() {
               Доставка
             </button>
           </div>
-          <a className="main-catalog__add-adress hlink-l text-yellow" href="/">Добавить адрес</a>
+          <Link className="main-catalog__add-adress hlink-l text-yellow" to="/">Добавить адрес</Link>
         </div>
         {/*------------------сюда промо-----------------------------*/}
         <aside className={`main-catalog__promotion-holder ${isFixed ? 'main-catalog__promotion-holder_margin-bottom' : ''}`}>
           <div className="main-catalog__promotion promotion-swiper">
             <div className="swiper-wrapper">
               {normalizedPromos?.map((item) => (
-                <a href={item.href} key={item.id} className="main-catalog__promotion-slide swiper-slide">
+                <Link to={`/${item.href}`} key={item.id} className="main-catalog__promotion-slide swiper-slide">
                   <img className="main-catalog__promotion-slide-img" src={`https://nf.kvokka.net${item.cover}`} alt="" />
-                </a>
+                </Link>
               ))}
             </div>
           </div>
