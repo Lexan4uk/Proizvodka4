@@ -20,10 +20,10 @@ function Addresses() {
                 <header className="addresses header">
                     <div className="header__holder block-normalizer f-row">
                         <button className="addresses__header-arrow simple-button" onClick={() => window.history.back()}>{arrow()}</button>
-                        <h2 className="addresses__header-title title-xs">Адреса доставки</h2>
+                        <h1 className="addresses__header-title title-xs">Адреса доставки</h1>
                     </div>
                 </header>
-                <section className="search__content block-normalizer f-column">
+                <section className="addresses__content block-normalizer f-column">
                 
                 </section>
                 <footer className="addresses footer_props search__footer">

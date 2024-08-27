@@ -11,3 +11,7 @@ api.addRequestTransform(request => {
     request.headers['Authorization'] = `Bearer ${token}`
   } 
 })
+export const kladrapi = create({
+  baseURL: 'https://kladr-api.ru/',
+  headers: { Accept: "application/json" },
+})

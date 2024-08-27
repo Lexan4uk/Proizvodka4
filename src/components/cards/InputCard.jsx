@@ -6,17 +6,18 @@ import { useFormContext } from "react-hook-form";
 
 
 
-function InputCard({type = "Input", 
-                    dataName = "", 
-                    mask = '', 
-                    replacement = null, 
-                    isShowMask = false, 
-                    inputType = "text", 
-                    setPlaceholder = "", 
-                    validationRules = {}, 
-                    setValue = "", 
-                    setOnChange = "", 
-                    setIcon = undefined }) {
+function InputCard({ type = "Input",
+    dataName = "",
+    mask = '',
+    replacement = null,
+    isShowMask = false,
+    inputType = "text",
+    setPlaceholder = "",
+    validationRules = {},
+    setValue = "",
+    setOnChange = "",
+    setIcon = undefined,
+    additionClass = ""}) {
     const { register, formState: { errors } } = useFormContext();
 
     let inputElement;
@@ -58,11 +59,19 @@ function InputCard({type = "Input",
         case "SimpleInput":
             inputElement = (
                 <div className="inputcard__main-box f-column gap-4">
-                    <div className={`inputcard__input-border ${errors[dataName] && "inputcard__input-border_error"}`}>
+                    <div className={`inputcard__input-border`}>
                         <input type={inputType} className="inputcard__input" placeholder={setPlaceholder} value={setValue} onChange={setOnChange} />
                         {setIcon && setIcon}
                     </div>
-                    {errors[dataName] && <span className="inputcard__error text-m text-red">{errors[dataName].message}</span>}
+                </div>
+            );
+            break;
+        case "AddAddressInput":
+            inputElement = (
+                <div className={`inputcard__main-box f-column gap-4 ${additionClass}`}>
+                    <div className={`inputcard__input-border`}>
+                        <input {...register(dataName, validationRules)} type={inputType} className="inputcard__input" placeholder={setPlaceholder} defaultValue={setValue} />
+                    </div>
                 </div>
             );
             break;

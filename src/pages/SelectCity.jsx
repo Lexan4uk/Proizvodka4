@@ -6,6 +6,7 @@ import getSvg from '@images/svg'
 import { useState, useEffect } from 'react';
 import InputCard from '@components/cards/InputCard'
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
+import useCity from '@scripts/custom_hooks/useCity';
 
 
 function SelectCity() {
@@ -22,7 +23,7 @@ function SelectCity() {
 
     useEffect(() => {
         if (rawCities && rawCities.items) {
-            const cityNames = rawCities.items.map(city => ({ "name": city.name, "id": city.id }));
+            const cityNames = rawCities.items.map(city => ({ "name": city.name, "id": city.id, "classifier_id": city.classifier_id }));
             setCities(cityNames);
         }
     }, [rawCities]);
@@ -41,7 +42,9 @@ function SelectCity() {
         }
     }, [searchItem, cities]);
 
-
+    useEffect(() => {
+        console.log(selectedCity)
+    }, [selectedCity])
 
 
     const {
@@ -49,13 +52,19 @@ function SelectCity() {
         search
     } = getSvg()
 
+    const {
+        isCityAdded,
+        initCity
+      } = useCity()
+
     const navigate = useNavigate();
 
     const handleChange = (event) => {
         setSearchItem(event.target.value);
     };
     const handleSave = () => {
-        localStorage.setItem("city", JSON.stringify({ 'cityId': selectedCity.id, 'cityName': selectedCity.name }));
+        localStorage.setItem("city", JSON.stringify({ 'cityId': selectedCity.id, 'cityName': selectedCity.name, "classifier_id": selectedCity.classifier_id }));
+        initCity()
         navigate("/")
     }
 
@@ -63,7 +72,7 @@ function SelectCity() {
         <>
             <main className="select-city select-city_props">
                 <header className="select-city__header block-normalizer f-row">
-                    <button className="select-city__header-button simple-button" onClick={() => navigate("/")}>{cross()}</button>
+                    {isCityAdded && <button className="select-city__header-button simple-button" onClick={() => navigate("/")}>{cross()}</button>}
                 </header>
                 <section className="select-city__content block-normalizer f-column">
                     <h1 className="select-city__article title-m">Выберите город</h1>

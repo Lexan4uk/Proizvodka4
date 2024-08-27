@@ -28,7 +28,6 @@ function Profile() {
         initUser()
         navigate("/")
     }
-    console.log(accData)
 
     return (
         <main>
