@@ -1,6 +1,7 @@
 import '@styles/cards/InputCard.scss';
 import { InputMask } from '@react-input/mask';
 import { useFormContext } from "react-hook-form";
+import { useState } from "react"; // Импортируем useState
 
 
 
@@ -17,11 +18,11 @@ function InputCard({ type = "Input",
     setValue = "",
     setOnChange = "",
     setIcon = undefined,
-    additionClass = ""}) {
+    additionClass = "" }) {
     const { register, formState: { errors } } = useFormContext();
 
     let inputElement;
-
+    const [rows, setRows] = useState(5);
     switch (type) {
         case "Input":
             inputElement = (
@@ -71,6 +72,28 @@ function InputCard({ type = "Input",
                 <div className={`inputcard__main-box f-column gap-4 ${additionClass}`}>
                     <div className={`inputcard__input-border`}>
                         <input {...register(dataName, validationRules)} type={inputType} className="inputcard__input" placeholder={setPlaceholder} defaultValue={setValue} />
+                    </div>
+                </div>
+            );
+            break;
+        case "AddAddressTextArea":
+            inputElement = (
+                <div className={`inputcard__main-box f-column gap-4 ${additionClass}`}>
+                    <div className={`inputcard__input-border`}>
+                        <textarea
+                            {...register(dataName, validationRules)}
+                            className="inputcard__input inputcard__input-textarea text-m"
+                            placeholder={setPlaceholder}
+                            defaultValue={setValue}
+                            rows={rows}
+                            onInput={(e) => {
+                                const textareaLineHeight = 16;
+                                e.target.rows = 5; 
+                                const currentRows = Math.ceil(e.target.scrollHeight / textareaLineHeight);
+                                setRows(currentRows > 5 ? currentRows : 5); 
+                                e.target.rows = currentRows;
+                            }}
+                        />
                     </div>
                 </div>
             );
