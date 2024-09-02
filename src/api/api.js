@@ -13,5 +13,6 @@ api.addRequestTransform(request => {
 })
 export const kladrapi = create({
   baseURL: 'https://kladr-api.ru/',
-  headers: { Accept: "application/json" },
+  headers: { Accept: "application/json", mode: "no-cors" },
+   mode: "no-cors"
 })

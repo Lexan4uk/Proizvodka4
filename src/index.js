@@ -9,6 +9,7 @@ import EditProfile from '@pages/EditProfile';
 import AuthError from '@pages/AuthError';
 import Addresses from '@pages/Addresses';
 import AddAddress from '@pages/AddAddress';
+import SearchPage from '@pages/SearchPage';
 
 
 
@@ -79,6 +80,7 @@ root.render(
               <Route path="/profile/edit" element={<EditProfile />} />
               <Route path="/profile/addresses" element={<Addresses />} />
               <Route path="/profile/addresses/add" element={<AddAddress />} />
+              <Route path="/profile/addresses/add/:type" element={<SearchPage />} />
             </Routes>
           </InitCity>
         </Router>

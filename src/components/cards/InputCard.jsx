@@ -19,7 +19,9 @@ function InputCard({ type = "Input",
     setOnChange = "",
     setIcon = undefined,
     additionClass = "" }) {
-    const { register, formState: { errors } } = useFormContext();
+    const formContext = useFormContext();
+    const register = formContext ? formContext.register : () => { };
+    const errors = formContext ? formContext.formState.errors : {};
 
     let inputElement;
     const [rows, setRows] = useState(5);
@@ -88,9 +90,9 @@ function InputCard({ type = "Input",
                             rows={rows}
                             onInput={(e) => {
                                 const textareaLineHeight = 16;
-                                e.target.rows = 5; 
+                                e.target.rows = 5;
                                 const currentRows = Math.ceil(e.target.scrollHeight / textareaLineHeight);
-                                setRows(currentRows > 5 ? currentRows : 5); 
+                                setRows(currentRows > 5 ? currentRows : 5);
                                 e.target.rows = currentRows;
                             }}
                         />

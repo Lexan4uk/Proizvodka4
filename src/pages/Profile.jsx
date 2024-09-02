@@ -22,6 +22,7 @@ function Profile() {
         accData,
         isAuthorised
     } = useAuth()
+    console.log(accData)
 
     const exitClick = () => {
         localStorage.removeItem('token');

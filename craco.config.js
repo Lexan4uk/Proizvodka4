@@ -15,4 +15,5 @@ module.exports = {
             '@scripts': resolvePath('./src/scripts'),
         }
     },
+    
 }

@@ -8,6 +8,7 @@ const PhoneEnter = ({ setLabel, setAuthData }) => {
     const [rawPhone, setRawPhone] = useState('');
     const [normalizedPhone, setNormalizedPhone] = useState('');
     const [isPhoneComplete, setIsPhoneComplete] = useState(false)
+    const [isQuerry, setIsQuerry] = useState(false)
 
     useEffect(() => {
         const normalizedPhoneBuffer = rawPhone.replace(/[^+\d]/g, '');
@@ -21,12 +22,13 @@ const PhoneEnter = ({ setLabel, setAuthData }) => {
     }, [rawPhone]);
 
     const handleStep = async () => {
-
+        setIsQuerry(true)
         const data = {
             "phone": `${normalizedPhone}`
         };
         
         const response = await simplePost(apiTags.phone_enter, data);
+        setIsQuerry(false)
         switch (response.code) {
             case 201:
                 setAuthData({
@@ -60,7 +62,7 @@ const PhoneEnter = ({ setLabel, setAuthData }) => {
             </main>
             <footer className="auth footer footer_props">
                 <nav className="footer__nav">
-                    <button className={`button-l footer__auth-btn ${!isPhoneComplete && "footer__auth-btn_inactive"}`} onClick={handleStep}>Продолжить</button>
+                    <button className={`button-l footer__auth-btn ${(!isPhoneComplete || isQuerry) && "footer__auth-btn_inactive"}`} onClick={handleStep}>Продолжить</button>
                 </nav>
             </footer>
         </>

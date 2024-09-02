@@ -1,12 +1,6 @@
-.select-city {
-    &__header {
-        justify-content: flex-end;
-        --iconcolor: var(--white);
+.search-page {
+    &__form {
         padding-top: 16px;
-        padding-bottom: 16px;
-    }
-    &__article {
-        margin-bottom: 24px;
     }
     &__search {
         appearance: none;
@@ -21,12 +15,19 @@
     }
     &__options-holder {
         margin-top: 16px;
-        gap: 16px;
+        margin-left: 40px;
     }
     &__option {
-        width: fit-content;
+        width: 100%;
+        text-align: left;
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+        border-bottom: 1px solid var(--dark-gray) !important;
         &_selected {
             color: var(--yellow);
+        }
+        &:last-child {
+            border-bottom: none !important;
         }
     }
 }

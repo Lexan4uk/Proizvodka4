@@ -15,7 +15,9 @@ import getSvg from '@images/svg'
 import { Link } from "react-router-dom";
 
 
+
 function Main() {
+
   const { data: options, error: opError, isLoading: opIsLoading } = useSWR(apiTags.menu_categories, simpleGet);
   const { data: goods, error: gError, isLoading: gIsLoading } = useSWR(apiTags.menu, simpleGet);
   const { data: promotions, error: pError, isLoading: pIsLoading } = useSWR(apiTags.promotions, simpleGet);
