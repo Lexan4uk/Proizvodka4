@@ -1,6 +1,6 @@
 import '@styles/pages/SearchPage.scss';
 import { kladrGet } from "@api/kladrGet"
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import useSWR from 'swr';
 import getSvg from '@images/svg'
 import { useState, useEffect } from 'react';
@@ -10,23 +10,36 @@ import useCity from '@scripts/custom_hooks/useCity';
 
 function SearchPage() {
     const { type } = useParams();
+    console.log(type)
     let page_data = {}
     switch (type) {
         case "street":
             page_data = {
-                placeholder: "Улица"
+                placeholder: "Введите название улицы"
             }
+            break;
+        case "house":
+            page_data = {
+                placeholder: "Введите номер дома"
+            }
+            break;
     }
     const { cityData } = useCity()
     const [searchItem, setSearchItem] = useState('')
     const navigate = useNavigate();
+    const location = useLocation();
+    const { selectedStreetId } = location.state || {};
 
     const { arrow, search } = getSvg()
     
+    
     const { data: querryData, error: qError } = useSWR(
-        searchItem && cityData.classifier_id ? `query=${searchItem}&contentType=street&cityId=${cityData.classifier_id}` : null,
+        searchItem && type === "street" ? `query=${searchItem}&contentType=street&cityId=${cityData.classifier_id}&limit=10` 
+        : searchItem && type === "house" ? `query=${searchItem}&streetId=${selectedStreetId}&contentType=building&limit=10`
+        : null,
         kladrGet
     );
+    console.log(querryData)
 
 
 
@@ -51,7 +64,7 @@ function SearchPage() {
                     </form>
                     <div className="search-page__options-holder f-column">
                         {querryData?.result?.slice(1).map((element) => (
-                            <button key={element.id} className={`search-page__option simple-button`} onClick={() => {navigate("/profile/addresses/add", {state: {
+                            <button key={element.guid} className={`search-page__option simple-button`} onClick={() => {navigate("/profile/addresses/add", {state: {
                                 selectedStreetName: `${element.typeShort}. ${element.name}`,
                                 selectedStreetId: element.id
                             }})}}>
